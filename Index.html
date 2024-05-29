@@ -9,7 +9,8 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        .content {
+        #textContent {
+            white-space: pre-wrap; /* To preserve line breaks and spaces */
             border: 1px solid #ccc;
             padding: 10px;
             background-color: #f9f9f9;
@@ -17,19 +18,21 @@
     </style>
 </head>
 <body>
-    <h1>Display Text</h1>
-    <div id="displayText" class="content"></div>
+    <h1>Saved Text</h1>
+    <div id="textContent"></div>
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('https://mclxdpbrg2n9j1y8ftm46zszshqy.pub.sfmc-content.com/3kc0kq0k4hu') // Replace with your actual server endpoint
-                .then(response => response.json())
+            // Fetch the text content from the backend
+            fetch('https://mclxdpbrg2n9j1y8ftm46zszshqy.pub.sfmc-content.com/3gtg3j4yen3')
+                .then(response => response.text())
                 .then(data => {
-                    document.getElementById('displayText').textContent = data.textContent;
+                    // Display the fetched text content
+                    document.getElementById('textContent').innerText = data;
                 })
                 .catch(error => {
-                    console.error('Error fetching the text content:', error);
-                    document.getElementById('displayText').textContent = 'Error loading text content.';
+                    console.error('Error fetching text content:', error);
+                    document.getElementById('textContent').innerText = 'Failed to load text content.';
                 });
         });
     </script>
